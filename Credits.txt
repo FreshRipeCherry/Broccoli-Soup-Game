@@ -1,0 +1,4 @@
+Broccoli Soup! by Secret Pie
+Made using Godot Game Engine
+
+Download the Source Code to see easter eggs and raw game files
