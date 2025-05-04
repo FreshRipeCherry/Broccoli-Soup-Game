@@ -6,4 +6,4 @@ This game is open source and free to copy and modify, do keep in mind however th
 Also also, the placeholder background music "Evening Dreamcsape pt1 - For Sunset Star Act 1" belongs to the fangame Sonic Before The Sequel, composed by Yuri Matsuura (website dead) and arranged by Falk
 
 # Credits (may be updated if there are more people that join the team)
-## Maddie - Main Programmer, Writer, and artist of the game
+## Maddie - Main Programmer, Writer, and Artist of the game
