@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://wp2kdsd076at"]
+[gd_scene load_steps=12 format=4 uid="uid://wp2kdsd076at"]
 
 [ext_resource type="PackedScene" uid="uid://yxqdlnyo4vnw" path="res://Scenes Test Grounds/player.tscn" id="1_n62pv"]
 [ext_resource type="Texture2D" uid="uid://5cjd40v384cl" path="res://Sprites Test Grounds/VOID Tileset.png" id="2_55e45"]
 [ext_resource type="LabelSettings" uid="uid://djb5u0mrhnuly" path="res://Saved Settings Test Grounds/LabelsbutGood.tres" id="3_1cars"]
 [ext_resource type="Texture2D" uid="uid://djnlsc0u1bvun" path="res://Bg Test Grounds/fondo caca.jpg" id="3_8ffuy"]
+[ext_resource type="Script" uid="uid://cambqrl1lwulq" path="res://Scripts Test Grounds/GroundPoundBlock.gd" id="5_dawso"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dkeko"]
 resource_name = "VOID Tileset"
@@ -254,6 +255,9 @@ sources/0 = SubResource("TileSetAtlasSource_dkeko")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1cars"]
 size = Vector2(900, 250)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mqag2"]
+size = Vector2(160.843, 75.1684)
+
 [node name="WHITE VOID" type="Node2D"]
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -304,8 +308,9 @@ tile_map_data = PackedByteArray("AADx/wYAAAABAAAAAADy/wYAAAABAAAAAADz/wYAAAABAAA
 tile_set = SubResource("TileSet_kfdik")
 
 [node name="MeshInstance2D" type="StaticBody2D" parent="."]
-position = Vector2(36151, -8682)
+position = Vector2(1384, 649)
 physics_material_override = SubResource("PhysicsMaterial_1cars")
+script = ExtResource("5_dawso")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="MeshInstance2D"]
 modulate = Color(0.435294, 0.337255, 0.337255, 1)
@@ -315,3 +320,15 @@ mesh = SubResource("QuadMesh_mqag2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MeshInstance2D"]
 shape = SubResource("RectangleShape2D_1cars")
 debug_color = Color(0.845347, 0.359456, 0.556106, 0.239216)
+
+[node name="GndPndDetect" type="Area2D" parent="MeshInstance2D"]
+
+[node name="GndPndCol" type="CollisionShape2D" parent="MeshInstance2D/GndPndDetect"]
+position = Vector2(-2.5, -215.5)
+scale = Vector2(5.05462, 2.72721)
+shape = SubResource("RectangleShape2D_mqag2")
+debug_color = Color(0.935375, 0.614003, 0, 0.42)
+
+[connection signal="StateChanged" from="brogle" to="MeshInstance2D" method="_on_brogle_state_changed"]
+[connection signal="body_entered" from="MeshInstance2D/GndPndDetect" to="MeshInstance2D" method="_on_gnd_pnd_detect_body_entered"]
+[connection signal="body_exited" from="MeshInstance2D/GndPndDetect" to="MeshInstance2D" method="_on_gnd_pnd_detect_body_exited"]
