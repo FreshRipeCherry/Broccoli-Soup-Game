@@ -16,6 +16,8 @@ var gravity = 5500 #ProjectSettings.get_setting("physics/2d/default_gravity")
 var squishPoppet = 0 #Variable that will squish and stretch Broccoli for some animations
 var lastSquishGndPnd = 0 #Variable to keep track of the scale when getting stretched
 
+signal StateChanged(State : String)
+
 func _physics_process(delta):
 	#DEBUG
 	state_label.text = CUR_STATE
@@ -39,6 +41,7 @@ func _physics_process(delta):
 	
 	if is_on_floor():
 		CUR_STATE = "Normal"
+		StateChanged.emit(CUR_STATE) #emits Broccoli's new state
 		#unsquish brogle
 		if (squishPoppet != 0):
 			sprite_2d.scale.x = squishPoppet
@@ -67,12 +70,16 @@ func _physics_process(delta):
 				sprite_2d.animation = "upBrogleJump"
 			if velocity.y >= 0:
 				sprite_2d.animation = "upBrogleFall"
+			# Short hops!
 			if Input.is_action_just_released("jump") and velocity.y < JUMP_VELOCITY / 2:
 				velocity.y = JUMP_VELOCITY / 2
+			# Starts Ground Pound ability
 			if (Input.is_action_pressed("down") and Input.is_action_just_pressed("jump")):
 				velocity.y = 0 # Move the delay here
 				CUR_STATE = "GrndPnd"
+				StateChanged.emit(CUR_STATE) #emits Ground Pound state
 		elif CUR_STATE == "GrndPnd":
+			StateChanged.emit(CUR_STATE) #emits Ground Pound state
 			if velocity.y <= 0:
 				sprite_2d.animation = "brogleGndPndStart"
 			else:
