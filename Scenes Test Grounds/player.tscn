@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=3 uid="uid://yxqdlnyo4vnw"]
+[gd_scene load_steps=108 format=3 uid="uid://yxqdlnyo4vnw"]
 
 [ext_resource type="Script" uid="uid://bghrejj8kvh7k" path="res://Scripts Test Grounds/player.gd" id="1_fcgw7"]
 [ext_resource type="Texture2D" uid="uid://v7j0usotb4dm" path="res://Sprites Test Grounds/brogle idle sheet.png" id="2_jnpyt"]
@@ -737,19 +737,21 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_10okm"]
 size = Vector2(386.5, 1036)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pxcea"]
+size = Vector2(459, 247.25)
+
 [node name="brogle" type="CharacterBody2D"]
 floor_constant_speed = true
-floor_snap_length = 2.0
+floor_snap_length = 5.0
 script = ExtResource("1_fcgw7")
+metadata/_edit_horizontal_guides_ = [-197.0, 836.0]
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(7.62939e-06, 0)
 scale = Vector2(1.01563, 1)
 sprite_frames = SubResource("SpriteFrames_8whqr")
-animation = &"brogleGndPndFall"
+animation = &"upBrogleIdle"
 autoplay = "upBrogleIdle"
-frame = 1
-frame_progress = 0.2538
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-71.25, 319)
@@ -758,3 +760,11 @@ shape = SubResource("RectangleShape2D_10okm")
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="GndPndHitbox" type="Area2D" parent="."]
+position = Vector2(-53, 837)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GndPndHitbox"]
+position = Vector2(-18.5, 102.375)
+shape = SubResource("RectangleShape2D_pxcea")
+debug_color = Color(0.752431, 0.446925, 0.278581, 0.42)

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlpuikd26ak3y"]
+
+[ext_resource type="PackedScene" uid="uid://di06g0swwb4rx" path="res://Scenes Test Grounds/bloque.tscn" id="1_kwouh"]
+[ext_resource type="Script" uid="uid://bptnxr6spcdnt" path="res://Scripts Test Grounds/bloque_gnd_pnd.gd" id="2_sbail"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sbail"]
+size = Vector2(14.8047, 8.55392)
+
+[node name="BloqueGndPnd" instance=ExtResource("1_kwouh")]
+script = ExtResource("2_sbail")
+
+[node name="MeshInstance2D" parent="." index="0"]
+modulate = Color(1, 0.81523, 0.673873, 1)
+
+[node name="CollisionShape2D" parent="." index="1"]
+visible = false
+
+[node name="CollisionPoint" type="Area2D" parent="." index="2"]
+position = Vector2(0, -9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionPoint" index="0"]
+position = Vector2(0, -3.83147)
+shape = SubResource("RectangleShape2D_sbail")
+debug_color = Color(0.914938, 0.259648, 0.338416, 0.42)
+
+[connection signal="area_entered" from="CollisionPoint" to="." method="_on_collision_point_area_entered"]
