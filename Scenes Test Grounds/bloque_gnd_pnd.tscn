@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bptnxr6spcdnt" path="res://Scripts Test Grounds/bloque_gnd_pnd.gd" id="2_sbail"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sbail"]
-size = Vector2(14.8047, 6.74698)
+size = Vector2(14.8047, 8.55392)
 
 [node name="BloqueGndPnd" instance=ExtResource("1_kwouh")]
 script = ExtResource("2_sbail")
@@ -19,7 +19,7 @@ visible = false
 position = Vector2(0, -9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionPoint" index="0"]
-position = Vector2(0, -2.928)
+position = Vector2(0, -3.83147)
 shape = SubResource("RectangleShape2D_sbail")
 debug_color = Color(0.914938, 0.259648, 0.338416, 0.42)
 
