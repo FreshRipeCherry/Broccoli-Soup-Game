@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://83jdw46wcqgt"]
+
+[ext_resource type="Script" uid="uid://cyn4vpf1j85xc" path="res://Scripts Test Grounds/basic_enemy.gd" id="1_k5urq"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_7kg3c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k5urq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7e5f"]
+
+[node name="BasicEnemy" type="RigidBody2D"]
+script = ExtResource("1_k5urq")
+
+[node name="Body" type="MeshInstance2D" parent="."]
+scale = Vector2(60, 60)
+mesh = SubResource("QuadMesh_7kg3c")
+
+[node name="WorldCollision" type="CollisionShape2D" parent="."]
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_k5urq")
+
+[node name="ContactDamage" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactDamage"]
+scale = Vector2(3.5, 3.5)
+shape = SubResource("RectangleShape2D_m7e5f")
+debug_color = Color(1, 0, 0.088366, 0.42)
