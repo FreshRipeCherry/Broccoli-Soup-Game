@@ -67,12 +67,15 @@ func _physics_process(delta):
 	# Resetting the coyote time timer
 	var was_floored = is_on_floor()
 	move_and_slide()
-	var no_grounded = was_floored and not is_on_floor() and velocity.y >= 0 # brogle was gruonded but they became airbone
+	var no_grounded = was_floored && !is_on_floor() && velocity.y >= 0
 	if no_grounded:
 		coyote_timer.start()
 	
 	# Push boxes
 	pushBox()
+	
+	# Pause game
+	pauseGame()
 	
 func pushBox() -> void:
 	for i in get_slide_collision_count():
@@ -106,7 +109,9 @@ func spriteUpdate(playerState: States) -> void:
 		else: sprite_2d.animation = "upBrogleJump" if velocity.y < -1 else "upBrogleFall"
 	else: pass
 
-
+func pauseGame() -> void:
+	if Input.is_action_just_pressed("pause"):
+		get_tree().paused = true
 
 func DEBUG() -> void:
 	player_collision.set_debug_color(Color.from_hsv(257, 9, 96, 0.5))
